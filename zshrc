@@ -61,7 +61,7 @@ export PYTHONPATH="/home/local/TERADICI/hladha/workspace/aptester:$PYTHONPATH"
 export PYTHONPATH="/home/local/TERADICI/hladha/workspace/tools:$PYTHONPATH"
 export PYTHONPATH="/home/local/TERADICI/hladha/workspace/certtestscripts:$PYTHONPATH"
 export PYTHONPATH="/home/local/TERADICI/hladha/workspace/automation-test-framework:$PYTHONPATH"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/3rdparty:$PYTHONPATH"
+export PYTHONPATH="/home/local/TERADICI/hladha/workspace/sulley:$PYTHONPATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment

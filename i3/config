@@ -94,15 +94,16 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $workspace1 "1: Documents"
-set $workspace2 "2: Terminals"
-set $workspace3 "3: Browser"
+set $workspace1 "1: Edit"
+set $workspace2 "2: Browser"
+set $workspace3 "3: Terminals"
+set $workspace4 "4: Workspace"
 
 # switch to workspace
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace 4
+bindsym $mod+4 workspace $workspace4
 bindsym $mod+5 workspace 5
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -113,7 +114,7 @@ bindsym $mod+9 workspace 9
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+4 move container to workspace $workspace4
 bindsym $mod+Shift+5 move container to workspace 5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
@@ -133,12 +134,13 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # Volume control via pactl (Pulse Audio)
-bindsym $mod+Control+Up exec pactl set-sink-volume pcoip-virtual-out +5%
-bindsym $mod+Control+Down exec pactl set-sink-volume pcoip-virtual-out -5%
-bindsym $mod+Control+m exec pactl set-sink-mute pcoip-virtual-out toggle
+bindsym $mod+Control+Up exec pactl set-sink-volume pcoip-virtual-out +5% && pkill -RTMIN+1 i3blocks
+bindsym $mod+Control+Down exec pactl set-sink-volume pcoip-virtual-out -5% && pkill -RTMIN+1 i3blocks
+bindsym $mod+Control+m exec pactl set-sink-mute pcoip-virtual-out toggle && pkill -RTMIN+1 
 
 # keybinding for screen lock
-bindsym $mod+Control+l exec i3lock -ti ~/Pictures/super_moon_3-wallpaper-1920x1080.png
+#bindsym $mod+Control+l exec i3lock -ti ~/Pictures/super_moon_3-wallpaper-1920x1080.png
+bindsym $mod+Control+l exec gnome-screensaver-command -l
 
 
 # resize window (you can also use the mouse for that)
@@ -218,6 +220,6 @@ client.urgent           #900000 #900000 #ffffff #2b2b2b
 # client.urgent           $red        $red        $black      $red
 # client.background       $back
 
-#exec chromium-browser
+exec gnome-screensaver
 # assign [class="Chromium-browser"] $workspace2
 #exec_always feh --bg-scale /home/local/TERADICI/hladha/Pictures/wallpaper.png

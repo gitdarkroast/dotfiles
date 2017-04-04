@@ -20,7 +20,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'klen/python-mode'
 Plug 'sjl/gundo.vim'
 Plug 'mbbill/undotree'
@@ -40,6 +41,8 @@ Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -56,8 +59,9 @@ let g:onedark_termcolors=256
 set modelines=1
 " don't make vim compatible with vi
 set nocompatible
-" show line numbers (relative)
+" show relative line numbers with current absolute
 set relativenumber
+set number
 " Sets how many lines of history VIM has to remember
 set history=512
 
@@ -103,8 +107,8 @@ set foldmethod=indent
 syntax enable
 set background=dark
 " let g:solarized_termcolors=256
-" colorscheme solarized
-colorscheme badwolf
+colorscheme solarized
+" colorscheme badwolf
 " Make the gutters darker than the background.
 " let g:badwolf_darkgutter = 1
 " Make the tab line darker than the background.
@@ -285,7 +289,7 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlPMRU'
 let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
-let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.(git|hg|svn)$',
@@ -293,6 +297,7 @@ let g:ctrlp_custom_ignore = {
     \ 'link': 'some_bad_symbolic_links',
     \ }
 let g:ctrlp_user_command = 'find %s -type f' 
+" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' 
 " }}}
 " {{{ Silver Searcher
 " open Ag
@@ -317,7 +322,6 @@ nmap <silent> <leader>y :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""
 " => Function key mappings
 """""""""""""""""""""""""""""""
-map <F2> :NERDTreeToggle<CR>
 "Buffer manipulation
 nnoremap <F3> :BuffergatorToggle<CR>
 " Toggline the tag bar (tagbar plugin)
@@ -536,7 +540,7 @@ function! NumberToggle()
         set number
     else
         set relativenumber
-        set nonu
+        set number
     endif
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
