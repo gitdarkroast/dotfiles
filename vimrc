@@ -75,8 +75,6 @@ let mapleader = ","
 let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
-" jk is escape
-inoremap jk <esc>
 
 " toggle gundo
 "nnoremap <leader>u : GundoToggle<CR>
@@ -107,10 +105,10 @@ set foldmethod=indent
 syntax enable
 set background=dark
 " let g:solarized_termcolors=256
-colorscheme solarized
-" colorscheme badwolf
+" colorscheme solarized
+colorscheme badwolf
 " Make the gutters darker than the background.
-" let g:badwolf_darkgutter = 1
+let g:badwolf_darkgutter = 3
 " Make the tab line darker than the background.
 " let g:badwolf_tabline = 0
 "
@@ -121,10 +119,10 @@ colorscheme solarized
 " let g:badwolf_tabline = 2
 "
 " " Make the tab line much lighter than the background.
-" let g:badwolf_tabline = 3
+let g:badwolf_tabline = 3
 "
 " Turn off HTML link underlining
-" let g:badwolf_html_link_underline =
+let g:badwolf_html_link_underline = 0
 "
 " highlight Pmenu ctermfg=15 ctermbg=0 guifg=#ffffff guibg=#000000
 let g:molokai_original = 1
@@ -201,6 +199,9 @@ set showmatch
 " How many tenths of a second to blink when matching brackets
 set mat=2
 nnoremap <leader><space> :nohlsearch<CR>
+
+nnoremap <expr> K (&filetype is# 'vim' ? (':help ' . fnameescape(expand('<cword>')) . "\n") : 'K')
+"nnoremap K :help <C-r><C-w><CR>
 " }}}
 " No annoying sound on errors
 set noerrorbells
@@ -307,7 +308,6 @@ if executable('ag')
     set grepprg=ag\ --nogroup\ --nocolor
     let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
     let g:ctrlp_use_cache = 0
-    nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 endif
 " }}}
 " close NERDTree after a file is opened
