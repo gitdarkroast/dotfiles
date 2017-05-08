@@ -67,6 +67,26 @@ set history=512
 
 " Set to auto read when a file is changed from the outside
 set autoread
+
+" Disable arrow keys - force better habits!
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+" Moving around, tabs, windows and buffers {{{
+" Treat long lines as break lines (useful when moving around in them)
+nnoremap j gj
+nnoremap k gk
+" Suppress accidently invoking help when trying to hit Esc
+inoremap <F1> <ESC>
+nnoremap <F1> <ESC>
+vnoremap <F1> <ESC>
+
+nnoremap ; :
 " }}}
 " Leader Shortcuts {{{
 " With a map leader it's possible to do extra key combinations
@@ -93,7 +113,6 @@ let g:ag_highlight=1
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " }}}
-"
 " Folding {{{
 set foldenable
 set foldlevelstart=10
@@ -138,6 +157,9 @@ set smarttab
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
+set formatoptions=qrnl
+set list 
+set listchars=tab:▸\ ,eol:¬
 
 " Linebreak on 500 characters
 set lbr
@@ -209,13 +231,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Moving around, tabs, windows and buffers {{{
-" Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
-
 " highlight last inserted text
-nnoremap gV `[v`]
+nnoremap <leader>v V']
 
 " Smart way to move between windows
 map <C-j> <C-W>j
