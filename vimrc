@@ -365,6 +365,25 @@ let g:limelight_paragraph_span = 1
 " "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 " }}}
+" Fugitive settings
+" Copied from this stackflow post:
+" http://stackoverflow.com/questions/15369499/how-can-i-view-git-diff-for-any-commit-using-vim-fugitive
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>ga :Gcommit --amend<CR>
+nnoremap <leader>gt :Gcommit -v -q %<CR>
+nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>ge :Gedit<CR>
+nnoremap <leader>gr :Gread<CR>
+nnoremap <leader>gw :Gwrite<CR><CR>
+nnoremap <leader>gl :silent! Glog<CR>
+nnoremap <leader>gp :Ggrep<Space>
+nnoremap <leader>gm :Gmove<Space>
+nnoremap <leader>gb :Git branch<Space>
+nnoremap <leader>go :Git checkout<Space>
+nnoremap <leader>gps :Dispatch! git push<CR>
+nnoremap <leader>gpl :Dispatch! git pull<CR>
+" }}}
 
 """""""""""""""""""""""""""""""
 " => Function key mappings
@@ -458,15 +477,15 @@ let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
 " Cursor Line setting {{{
-" hi CursorLine   cterm=bold ctermbg=lightblue ctermfg=white guibg=darkred guifg=white
-"hi CursorLine cterm=none ctermfg=darkblue ctermbg=lightgray guifg=#ffffff guibg=#000000
+"i CursorLine   cterm=bold ctermbg=lightblue ctermfg=white guibg=darkred guifg=white
+" hi CursorLine cterm=none ctermfg=darkblue ctermbg=lightgray guifg=#ffffff guibg=#000000
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi Search cterm=none ctermbg=Red ctermfg=White guibg=peru guifg=wheat
 augroup CursorLine
     au!
-    au WinLeave,InsertEnter * set nocursorline
-    au WinEnter,InsertLeave * set cursorline
+    au WinLeave,InsertEnter * set nocursorcolumn nocursorline
+    au WinEnter,InsertLeave * set cursorcolumn cursorline
 augroup END
 " }}}
 " Python mode configuration {{{
