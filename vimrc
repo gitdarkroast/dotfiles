@@ -1,4 +1,6 @@
- " Note: Skip initialization for vim-tiny or vim-small.
+ " vimtc by Hanif Ladha.
+ " Borrowed from numerous sources, incuding:
+ " https://bitbucket.org/sjl/dotfiles
  if 0 | endif
  
 if has('vim_starting')
@@ -8,12 +10,11 @@ if has('vim_starting')
 endif
  
 " Required:
+" Using vim-plug to manage the plugins: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/bundle')
  
 " Bundle Section {{{
-" Let NeoBundle manage NeoBundle
 " Required:
-Plug 'gmarik/vundle'
 Plug 'scrooloose/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'airblade/vim-gitgutter'
@@ -39,10 +40,11 @@ Plug 'honza/vim-snippets'
 Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'rking/ag.vim'
-Plug 'joshdick/onedark.vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
 
 call plug#end()
 
@@ -53,8 +55,6 @@ call plug#end()
 " Required:
 filetype plugin indent on
 
-let g:onedark_termcolors=256
- 
 " check just the final line of the file for a modeline
 set modelines=1
 " don't make vim compatible with vi
@@ -64,10 +64,8 @@ set relativenumber
 set number
 " Sets how many lines of history VIM has to remember
 set history=512
-
 " Set to auto read when a file is changed from the outside
 set autoread
-
 " Disable arrow keys - force better habits!
 nnoremap <up> <nop>
 nnoremap <down> <nop>
@@ -158,8 +156,17 @@ set shiftwidth=4
 set tabstop=4
 set softtabstop=4
 set formatoptions=qrnl
+
+" Trailing whitespace {{{
+" Only shown when not in insert mode so I don't go insane.
 set list 
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+augroup trailing
+    au!
+    au InsertEnter * :set listchars-=trail:⌴
+    au InsertLeave * :set listchars+=trail:⌴
+augroup END
+" }}}
 
 " Linebreak on 500 characters
 set lbr
@@ -224,6 +231,9 @@ nnoremap <leader><space> :nohlsearch<CR>
 
 nnoremap <expr> K (&filetype is# 'vim' ? (':help ' . fnameescape(expand('<cword>')) . "\n") : 'K')
 "nnoremap K :help <C-r><C-w><CR>
+" Use sane regexes.
+nnoremap / /\v
+vnoremap / /\v
 " }}}
 " No annoying sound on errors
 set noerrorbells
@@ -327,6 +337,7 @@ if executable('ag')
     let g:ctrlp_use_cache = 0
 endif
 " }}}
+" NERDTree settings {{{
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=0
 " show hidden files in NERDTree
@@ -335,6 +346,25 @@ let NERDTreeShowHidden=1
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
+" }}}
+" GitGutter settings {{{
+let g:gitgutter_enabled = 1
+let g:gitgutter_signs = 1
+let g:gitgutter_highlight_lines = 0
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = 'x'
+let g:gitgutter_sign_removed_first_line = 'x_'
+let g:gitgutter_sign_modified_removed = '~_'
+" }}}
+" Limelight settings {{{
+nmap <leader>l :Limelight!! 0.75<CR>
+" Number of preceding/following paragraphs to include (default: 0)
+let g:limelight_paragraph_span = 1
+" Highlighting priority (default: 10)
+" "   Set it to -1 not to overrule hlsearch
+let g:limelight_priority = -1
+" }}}
 
 """""""""""""""""""""""""""""""
 " => Function key mappings
@@ -427,6 +457,7 @@ let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " }}}
+" Cursor Line setting {{{
 " hi CursorLine   cterm=bold ctermbg=lightblue ctermfg=white guibg=darkred guifg=white
 "hi CursorLine cterm=none ctermfg=darkblue ctermbg=lightgray guifg=#ffffff guibg=#000000
 "hi CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
@@ -434,11 +465,10 @@ nnoremap <Leader>c :set cursorline! cursorcolumn!<CR>
 hi Search cterm=none ctermbg=Red ctermfg=White guibg=peru guifg=wheat
 augroup CursorLine
     au!
-    au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
-    au WinLeave * setlocal nocursorline
+    au WinLeave,InsertEnter * set nocursorline
+    au WinEnter,InsertLeave * set cursorline
 augroup END
-autocmd WinEnter * setlocal cursorline
-autocmd WinLeave * setlocal nocursorline
+" }}}
 " Python mode configuration {{{
 let g:pymode_rope = 0
 
