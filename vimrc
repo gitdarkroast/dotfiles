@@ -1,14 +1,7 @@
- " vimtc by Hanif Ladha.
- " Borrowed from numerous sources, incuding:
- " https://bitbucket.org/sjl/dotfiles
- if 0 | endif
- 
-if has('vim_starting')
-    if &compatible
-        set nocompatible               " Be iMproved
-    endif
-endif
- 
+" vimrc by Hanif Ladha.
+" Borrowed from numerous sources, incuding:
+" https://bitbucket.org/sjl/dotfiles
+" https://github.com/amix/vimrc
 " Required:
 " Using vim-plug to manage the plugins: https://github.com/junegunn/vim-plug
 call plug#begin('~/.vim/bundle')
@@ -19,6 +12,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'gregsexton/gitv', {'on': ['Gitv']}
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
@@ -51,10 +45,26 @@ call plug#end()
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 " }}}
+" GUI specific settings {{{
+if has('gui_running')
+    " Hack font setup {{{
+    if has("mac") || has("macunix")
+        set gfn=Hack:h14,Source\ Code\ Pro:h15,Menlo:h15
+    elseif has("win16") || has("win32")
+        set gfn=Hack:h14,Source\ Code\ Pro:h12,Bitstream\ Vera\ Sans\ Mono:h11
+    elseif has("gui_gtk2")
+        set gfn=Hack\ 12,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    elseif has("linux")
+        set gfn=Hack\ 12,Source\ Code\ Pro\ 12,Bitstream\ Vera\ Sans\ Mono\ 11
+    elseif has("unix")
+        set gfn=Monospace\ 11
+    endif
+    " }}}
+endif
+" }}}
 " {{{ Basic Settings
 " Required:
 filetype plugin indent on
-
 " check just the final line of the file for a modeline
 set modelines=1
 " don't make vim compatible with vi
@@ -94,15 +104,16 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" toggle gundo
-"nnoremap <leader>u : GundoToggle<CR>
-" toggle undotree
-" nnoremap <F5> :UndotreeToggle<CR>
-nnoremap <leader>u :UndotreeToggle<CR>
+" Gundo {{{
+if has('python3')
+    let g:gundo_prefer_python3=1
+endif
+nnoremap <leader>u :GundoToggle<CR>
 if has("persistent_undo")
     set undodir=~/.undodir/
     set undofile
 endif
+" }}}
 " edit vimrc/zshrc and load vimrc bindings
 nnoremap <leader>ev :vsp $MYVIMRC<CR>
 nnoremap <leader>ez :vsp ~/.zshrc<CR>
@@ -232,8 +243,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 nnoremap <expr> K (&filetype is# 'vim' ? (':help ' . fnameescape(expand('<cword>')) . "\n") : 'K')
 "nnoremap K :help <C-r><C-w><CR>
 " Use sane regexes.
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 " }}}
 " No annoying sound on errors
 set noerrorbells
@@ -324,8 +335,8 @@ let g:ctrlp_custom_ignore = {
     \ 'file': '\v\.(exe|so|dll)$',
     \ 'link': 'some_bad_symbolic_links',
     \ }
-let g:ctrlp_user_command = 'find %s -type f' 
-" let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' 
+" let g:ctrlp_user_command = 'find %s -type f' 
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""' 
 " }}}
 " {{{ Silver Searcher
 " open Ag
@@ -357,15 +368,16 @@ let g:gitgutter_sign_removed = 'x'
 let g:gitgutter_sign_removed_first_line = 'x_'
 let g:gitgutter_sign_modified_removed = '~_'
 " }}}
-" Limelight settings {{{
+" Limelight and Goyo settings {{{
 nmap <leader>l :Limelight!! 0.75<CR>
 " Number of preceding/following paragraphs to include (default: 0)
+map <leader>z :Goyo<CR>
 let g:limelight_paragraph_span = 1
 " Highlighting priority (default: 10)
 " "   Set it to -1 not to overrule hlsearch
 let g:limelight_priority = -1
 " }}}
-" Fugitive settings
+" Fugitive settings {{{
 " Copied from this stackflow post:
 " http://stackoverflow.com/questions/15369499/how-can-i-view-git-diff-for-any-commit-using-vim-fugitive
 nnoremap <leader>gs :Gstatus<CR>
@@ -536,6 +548,7 @@ let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_completion_bind = '<C-Space>'
 " }}}
 " Augroups {{{
+" Change numberign style when focus changes - may not always work in terminal mode
 au FocusLost * :set number
 au FocusGained * :set relativenumber
 augroup vimrc_autocmds
