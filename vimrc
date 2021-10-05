@@ -133,8 +133,8 @@ set foldmethod=indent
 syntax enable
 set background=dark
 " let g:solarized_termcolors=256
-" colorscheme solarized
-colorscheme badwolf
+ colorscheme solarized
+" colorscheme badwolf
 " Make the gutters darker than the background.
 let g:badwolf_darkgutter = 3
 " Make the tab line darker than the background.
@@ -227,6 +227,12 @@ set ignorecase
 " When searching try to be smart about cases 
 set smartcase
 " }}}
+" {{{ CTag settings and mapping
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" }}}
+" Set 7 lines to the cursor - when moving vertically using j/k
+"
 " {{{ Searching
 " Highlight search results
 set hlsearch

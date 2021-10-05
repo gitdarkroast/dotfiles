@@ -56,12 +56,8 @@ source $ZSH/oh-my-zsh.sh
 # I do not want to share history across zsh instances
 unsetopt share_history
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/aptester:$PYTHONPATH"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/tools:$PYTHONPATH"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/certtestscripts:$PYTHONPATH"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/automation-test-framework:$PYTHONPATH"
-export PYTHONPATH="/home/local/TERADICI/hladha/workspace/sulley:$PYTHONPATH"
+#export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
