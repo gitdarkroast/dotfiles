@@ -35,4 +35,4 @@ alias cat="bat --theme=gruvbox-dark"
 set -Ux EDITOR "nvim"
 
 
-#starship init fish | source
+starship init fish | source
