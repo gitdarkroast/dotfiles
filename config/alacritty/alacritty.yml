@@ -5,11 +5,11 @@ window:
   class:
     instance: Alacritty
     general: Alacritty
-  opacity: 1
+  #  opacity: 0.90
   # Let windows manager assign the termial size
   dimensions:
-    columns: 0
-    lines: 0
+    columns: 120
+    lines: 40
   decorations: full
   dynamic_title: true
 
@@ -34,94 +34,10 @@ font:
   size: 13
 draw_bold_text_with_bright_colors: true
 
-schemes:
-  # Tokyo Night theme, based on both:
-  #   https://github.com/ghifarit53/tokyonight-vim
-  #   https://github.com/enkia/tokyo-night-vscode-theme
-  tokyo-night: &tokyo-night
-  # COLORSCHEME: gruvbox_dark.yaml
-  # Default colors
-    primary:
-    # hard contrast: background = '0x1d2021'
-      background: '0x282828'
-    # soft contrast: background = '0x32302f'
-      foreground: '0xebdbb2'
-
-  # Normal colors
-    normal:
-      black: '0x282828'
-      red: '0xcc241d'
-      green: '0x98971a'
-      yellow: '0xd79921'
-      blue: '0x458588'
-      magenta: '0xb16286'
-      cyan: '0x689d6a'
-      white: '0xa89984'
-
-  # Bright colors
-    bright:
-      black: '0x928374'
-      red: '0xfb4934'
-      green: '0xb8bb26'
-      yellow: '0xfabd2f'
-      blue: '0x83a598'
-      magenta: '0xd3869b'
-      cyan: '0x8ec07c'
-      white: '0xebdbb2'
-  tokyo-night-storm:
-    # Default colors
-    primary:
-      background: '0x24283b'
-      foreground: '0xa9b1d6'
-
-    # Normal colors
-    normal:
-      black: '0x32344a'
-      red: '0xf7768e'
-      green: '0x9ece6a'
-      yellow: '0xe0af68'
-      blue: '0x7aa2f7'
-      magenta: '0xad8ee6'
-      cyan: '0x449dab'
-      white: '0x9699a8'
-
-    # Bright colors
-    bright:
-      black: '0x444b6a'
-      red: '0xff7a93'
-      green: '0xb9f27c'
-      yellow: '0xff9e64'
-      blue: '0x7da6ff'
-      magenta: '0xbb9af7'
-      cyan: '0x0db9d7'
-      white: '0xacb0d0'
-
-  default-scheme:
-    primary:
-      background: '#11121D'
-      foreground: '#a9b1d6'
-    normal:
-      black: '#32344a'
-      red: '#f7768e'
-      green: '#9ece6a'
-      yellow: '#e0af68'
-      blue: '#7aa2f7'
-      magenta: '#ad8ee6'
-      cyan: '#449dab'
-      white: '#787c99'
-    bright:
-      black: '#444b6a'
-      red: '#ff7a93'
-      green: '#b9f27c'
-      yellow: '#ff9e64'
-      blue: '#7da6ff'
-      magenta: '#bb9af7'
-      cyan: '#0db9d7'
-      white: '#acb0d0'
-
-
-
-colors: *tokyo-night
+# Color theme
+import:
+  #- ~/.config/alacritty/themes/tokyo-night.yaml
+- ~/.config/alacritty/themes/dracula.yaml
 
 selection:
   save_to_clipboard: false
@@ -133,6 +49,6 @@ shell:
 
 # MACOS - Super == Command
 key_bindings:
-  - {key: F, mods: Super|Shift, action: ToggleSimpleFullScreen}
+  - {key: F, mods: Super|Shift, action: ToggleFullscreen}
   - {key: N, mods: Command, action: CreateNewWindow}
 
