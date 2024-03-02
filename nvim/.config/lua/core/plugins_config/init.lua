@@ -1,8 +1,0 @@
-require("core.plugins_config.colorscheme")
-require("core.plugins_config.nvimtree")
-require("core.plugins_config.telescope")
-require("core.plugins_config.which-key")
-require("core.plugins_config.lualine")
-require("core.plugins_config.nvim-cmp")
-require("core.plugins_config.mason")
-require("core.plugins_config.lsp_config")
