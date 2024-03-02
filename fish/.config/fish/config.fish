@@ -25,9 +25,9 @@ set fish_greeting ""
 alias cp="cp -v"
 alias mv="mv -v"
 alias ls="exa"
-alias ll="exa --long --header --all"
-alias lg="exa --long --header --all --git"
-alias tree="exa --tree --level=3"
+alias ll="exa --all --long --header --icons"
+alias lg="exa --all --long --header --icons --git"
+alias tree="exa --tree"
 alias cat="bat --theme=gruvbox-dark"
 
 
@@ -36,3 +36,4 @@ set -Ux EDITOR "nvim"
 
 
 starship init fish | source
+zoxide init --cmd cd fish | source
