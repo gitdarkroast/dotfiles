@@ -39,6 +39,9 @@ config.inactive_pane_hsb = {
   saturation = 0.9,
   brightness = 0.6,
 }
+-- Default window size
+config.initial_cols=150
+config.initial_rows=40
 
 -- and finally, return the configuration to wezterm
 return config
