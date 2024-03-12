@@ -2,15 +2,15 @@ require("lazy").setup(
 {
   -- colorscheme
   {
-    "catppuccin/nvim", name = "catppuccin", priority = 1000 
+    "catppuccin/nvim", name = "catppuccin", priority = 1000
   },
   "nvim-tree/nvim-tree.lua",
   "nvim-tree/nvim-web-devicons",
 
   {
-    "nvim-telescope/telescope.nvim", 
+    "nvim-telescope/telescope.nvim",
     branch = "0.1.x",
-    dependencies = { 
+    dependencies = {
       "nvim-lua/plenary.nvim",
       {
         "nvim-telescope/telescope-fzf-native.nvim",
@@ -45,6 +45,10 @@ require("lazy").setup(
         {"antosha417/nvim-lsp-file-operations", config=true},
       },
     },
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter",
   },
 
   -- Code completion

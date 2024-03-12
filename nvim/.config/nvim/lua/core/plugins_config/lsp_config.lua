@@ -82,3 +82,12 @@ lspconfig["lua_ls"].setup({
   },
 })
 
+-- configure cland for c++ 
+lspconfig["clangd"].setup({
+  capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    client.server_capabilities.signatureHelpProvider = false
+    on_attach(client, bufnr)
+  end,
+})
+

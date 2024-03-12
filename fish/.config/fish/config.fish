@@ -1,3 +1,6 @@
+if status --is-login
+  set -gx PATH $PATH /opt/homebrew/bin
+end
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
@@ -24,10 +27,10 @@ set fish_greeting ""
 # Aliases
 alias cp="cp -v"
 alias mv="mv -v"
-alias ls="exa"
-alias ll="exa --all --long --header --icons"
-alias lg="exa --all --long --header --icons --git"
-alias tree="exa --tree"
+#alias ls="exa"
+#alias ll="exa --all --long --header --icons"
+#alias lg="exa --all --long --header --icons --git"
+#alias tree="exa --tree"
 alias cat="bat --theme=gruvbox-dark"
 
 
