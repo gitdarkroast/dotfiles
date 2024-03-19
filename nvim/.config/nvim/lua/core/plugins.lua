@@ -20,6 +20,20 @@ require("lazy").setup(
     },
   },
 
+  -- buffer
+  {
+    "willothy/nvim-cokeline",
+      version="*",
+      dependencies= {
+        "nvim-tree/nvim-web-devicons"
+      }
+    },
+
+  -- Cursor movement and search
+  {
+    "ggandor/leap.nvim"
+  },
+
   -- Statusline
   {
     'nvim-lualine/lualine.nvim',
