@@ -23,7 +23,7 @@ wk.register({
   f = {
     name = "find",
     f = {"<cmd>Telescope find_files<cr>", "Fuzzy find files in cwd"},
-    r = {"<cmd>Telescope oldfiles<cr>", "Fuzzy find recebt files"},
+    r = {"<cmd>Telescope oldfiles<cr>", "Fuzzy find recent files"},
     g = {"<cmd>Telescope live_grep<cr>", "Find string in cwd"},
     c = {"<cmd>Telescope grep_string<cr>", "Find string under cursor cwd"},
     t = {"<cmd>Telescope help_tags<cr>", "Find Tags"},
