@@ -8,5 +8,5 @@ require("core.plugins_config.mason")
 require("core.plugins_config.lsp_config")
 require("core.plugins_config.treesitter")
 require("core.plugins_config.leap")
-require("core.plugins_config.cokeline")
-
+require("core.plugins_config.bufferline")
+require("core.plugins_config.none_ls")

@@ -1,6 +1,5 @@
 -- Pull in the wezterm API
 local wezterm = require 'wezterm'
-local mux = wezterm.mux
 local act = wezterm.action
 
 -- This table will hold the configuration.
@@ -14,9 +13,9 @@ end
 
 -- This is where you actually apply your config choices
 -- Fonts and color scheme
-config.font = wezterm.font 'JetBrainsMono Nerd Font'
+config.font = wezterm.font('JetBrainsMono Nerd Font')
 config.font_size = 16
--- config.color_scheme = 'Solarized Dark Higher Contrast'
+
 config.color_scheme = 'Catppuccin Mocha'
 
 config.hide_tab_bar_if_only_one_tab = true
@@ -43,5 +42,30 @@ config.inactive_pane_hsb = {
 config.initial_cols=120
 config.initial_rows=40
 
+-- Tab font
+config.window_frame = {
+-- font = wezterm.font { family = 'Noto Sans', weight = 'Regular' },
+    border_left_width = '0.5cell',
+  border_right_width = '0.5cell',
+  border_bottom_height = '0.25cell',
+  border_top_height = '0.25cell',
+  border_left_color = 'purple',
+  border_right_color = 'purple',
+  border_bottom_color = 'purple',
+  border_top_color = 'purple',
+
+}
+-- Key maps
+config.keys =
+{
+  { key = 'f', mods = 'CMD', action = act.SplitVertical { domain = 'CurrentPaneDomain' }, },
+  { key = 'd', mods = 'CMD', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' }, },
+  { key = 'h', mods = 'CMD', action = act.ActivatePaneDirection 'Left', },
+  { key = 'l', mods = 'CMD', action = act.ActivatePaneDirection 'Right', },
+  { key = 't', mods = 'CMD', action = act.SpawnTab 'CurrentPaneDomain' },
+  { key = 'w', mods = 'CMD', action = act.CloseCurrentTab{ confirm = false } },
+  { key = 'x', mods = 'CMD', action = act.CloseCurrentPane{ confirm = false } },
+  { key = 'r', mods = 'LEADER', action = act.ActivateKeyTable { name = 'resize_pane', one_shot = false, }, }
+}
 -- and finally, return the configuration to wezterm
 return config
