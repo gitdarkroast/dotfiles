@@ -5,22 +5,16 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# Fish git prompt
-set __fish_git_prompt_showdirtystate yes
-set __fish_git_prompt_showstashstate yes
-set __fish_git_prompt_showuntrackedfiles yes
-set __fish_git_prompt_showupstream yes
-set __fish_git_prompt_color_branch yellow
-set __fish_git_prompt_color_upstream_ahead green
-set __fish_git_prompt_color_upstream_behind red
 
-# Status Chars
-set __fish_git_prompt_char_dirtystate '⚡'
-set __fish_git_prompt_char_stagedstate '→'
-set __fish_git_prompt_char_untrackedfiles '☡'
-set __fish_git_prompt_char_stashstate '↩'
-set __fish_git_prompt_char_upstream_ahead '+'
-set __fish_git_prompt_char_upstream_behind -
+set -g theme_powerline_fonts yes
+set -g theme_nerd_fonts yes
+set -g theme_display_git_stashed_verbose yes
+set -g theme_display_git_master_branch yes
+set -g theme_display_git_untracked yes
+set -g theme_display_git_dirty yes
+set -g theme_display_nvm yes
+set -g theme_display_virtualenv yes
+set -g theme_color_scheme zenburn
 
 set fish_greeting ""
 
