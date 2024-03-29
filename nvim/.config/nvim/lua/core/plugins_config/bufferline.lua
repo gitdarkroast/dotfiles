@@ -19,10 +19,16 @@ bufferline.setup({
 
 local wk = require("which-key")
 
+vim.api.nvim_create_user_command("CloseBuffer", function()
+	vim.cmd([[NvimTreeClose]])
+	vim.cmd([[bdelete!]])
+end, {})
+
 wk.register({
 	b = {
 		name = "Buffers",
-		["n"] = { "<Plug>(cokeline-switch-next)", "Go to next buffer" },
-		["p"] = { "<Plug>(cokeline-switch-prev)", "Go to previous buffer" },
+		["n"] = { "<cmd>BufferLineCycleNext<CR>", "Go to next buffer" },
+		["p"] = { "<cmd>BufferLineCyclePrev<CR>", "Go to previous buffer" },
+		["x"] = { "<cmd>CloseBuffer<CR>", "Delete current buffer" },
 	},
 }, { prefix = "<leader>" })
