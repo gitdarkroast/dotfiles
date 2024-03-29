@@ -5,6 +5,8 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000,
 	},
+
+	-- file explorer
 	"nvim-tree/nvim-tree.lua",
 	"nvim-tree/nvim-web-devicons",
 
@@ -63,6 +65,7 @@ require("lazy").setup({
 		},
 	},
 
+	-- Help with formatting
 	{
 		"jay-babu/mason-null-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -95,5 +98,24 @@ require("lazy").setup({
 		},
 	},
 
+	-- Document key mapping
 	"folke/which-key.nvim",
+
+	-- Comment
+	{
+		"numToStr/Comment.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"JoosepAlviste/nvim-ts-context-commentstring",
+		},
+	},
+
+	-- autopairs
+	{
+		"windwp/nvim-autopairs",
+		event = { "InsertEnter" },
+		dependencies = {
+			"hrsh7th/nvim-cmp",
+		},
+	},
 })
