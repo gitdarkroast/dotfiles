@@ -118,4 +118,13 @@ require("lazy").setup({
 			"hrsh7th/nvim-cmp",
 		},
 	},
+
+	-- diagnostic navigation
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"folke/todo-comments.nvim",
+		},
+	},
 })
