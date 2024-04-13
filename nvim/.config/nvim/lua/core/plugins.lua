@@ -127,4 +127,11 @@ require("lazy").setup({
 			"folke/todo-comments.nvim",
 		},
 	},
+
+	-- indentation guide
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		event = { "BufReadPre", "BufNewFile" },
+	},
 })
