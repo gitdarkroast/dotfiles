@@ -65,20 +65,7 @@ require("lazy").setup({
 		},
 	},
 
-	-- Help with formatting
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"nvimtools/none-ls.nvim",
-		},
-	},
-
-	{
-		"nvimtools/none-ls.nvim",
-	},
-
+	-- File explorer
 	{
 		"nvim-treesitter/nvim-treesitter",
 	},
@@ -132,6 +119,18 @@ require("lazy").setup({
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+
+	-- formatting
+	{
+		"stevearc/conform.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+	},
+
+	-- Linting
+	{
+		"mfussenegger/nvim-lint",
 		event = { "BufReadPre", "BufNewFile" },
 	},
 })
