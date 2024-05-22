@@ -4,6 +4,7 @@ lint.linters_by_ft = {
 	json = { "jsonlint" },
 	lua = { "luacheck" },
 	python = { "pylint" },
+	go = { "ast-grep" },
 }
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

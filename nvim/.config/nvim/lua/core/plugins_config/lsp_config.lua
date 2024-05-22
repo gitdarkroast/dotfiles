@@ -88,6 +88,12 @@ lspconfig["clangd"].setup({
 	on_attach = on_attach,
 })
 
+-- configure cland for Go
+lspconfig["gopls"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
 -- configure for python
 lspconfig["pyright"].setup({
 	capabilities = capabilities,
