@@ -14,6 +14,7 @@ local custom_actions = transform_mod({
 
 telescope.setup({
 	defaults = {
+		path_display = { "smart" },
 		mappings = {
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
