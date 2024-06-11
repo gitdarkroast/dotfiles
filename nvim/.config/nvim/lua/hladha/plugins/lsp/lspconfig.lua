@@ -102,6 +102,12 @@ return {
 					},
 				})
 			end,
+			["clangd"] = function()
+				lspconfig["clangd"].setup({
+					cmd = { "clangd", "--completion-style=detailed" },
+					capabilities = capabilities,
+				})
+			end,
 		})
 	end,
 }
