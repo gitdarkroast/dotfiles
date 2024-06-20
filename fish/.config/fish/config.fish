@@ -21,7 +21,7 @@ set fish_greeting ""
 # Aliases
 alias cp="cp -v"
 alias mv="mv -v"
-#alias ls="exa"
+alias ls="eza --icons=always"
 #alias ll="exa --all --long --header --icons"
 #alias lg="exa --all --long --header --icons --git"
 #alias tree="exa --tree"
