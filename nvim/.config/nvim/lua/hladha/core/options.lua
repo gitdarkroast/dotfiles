@@ -32,3 +32,6 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 
 -- cursor line
 opt.cursorline = true -- highlight the current cursor line
+
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
