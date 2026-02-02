@@ -33,5 +33,8 @@ set -Ux EDITOR "nvim"
 
 
 starship init fish | source
-zoxide init --cmd cd fish | source
+zoxide init fish | source
 fzf --fish | source
+
+set -x GPG_TTY $(TTY)
+/opt/homebrew/bin/gpg-agent --daemon
