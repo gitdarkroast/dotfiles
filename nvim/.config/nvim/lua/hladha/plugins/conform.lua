@@ -1,31 +1,27 @@
+-- lua/hladha/plugins/formatting.lua
 return {
 	"stevearc/conform.nvim",
-	event = { "BufReadPre", "BufNewFile" },
-	config = function()
-		local conform = require("conform")
-
-		conform.setup({
-			formatters_by_ft = {
-				html = { "prettier" },
-				json = { "prettier" },
-				yaml = { "prettier" },
-				-- markdown = { "prettier" },
-				lua = { "stylua" },
-				python = { "isort", "black" },
-			},
-			format_on_save = {
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			},
+	opts = {
+		formatters_by_ft = {
+			lua = { "stylua" },
+			python = { "isort", "black" },
+			javascript = { "prettier" },
+			typescript = { "prettier" },
+			json = { "prettier" },
+			yaml = { "prettier" },
+			markdown = { "prettier" },
+		},
+	},
+	config = function(_, opts)
+		require("conform").setup(opts)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			pattern = { "*.lua", "*.py", "*.ts", "*.js", "*.json", "*.yml", "*.yaml", "*.md" },
+			callback = function(args)
+				require("conform").format({ bufnr = args.buf, lsp_fallback = true })
+			end,
 		})
-
-		vim.keymap.set({ "n", "v" }, "<leader>mp", function()
-			conform.format({
-				lsp_fallback = true,
-				async = false,
-				timeout_ms = 1000,
-			})
-		end, { desc = "Format file or range (in visual mode)" })
+		vim.keymap.set({ "n", "v" }, "<leader>f", function()
+			require("conform").format({ async = true, lsp_fallback = true })
+		end, { desc = "Format buffer or range" })
 	end,
 }

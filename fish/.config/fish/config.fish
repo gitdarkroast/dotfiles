@@ -30,6 +30,13 @@ alias cat="bat --theme=gruvbox-dark"
 
 # Env variables
 set -Ux EDITOR "nvim"
+set -Ux AWS_PROFILE "bedrock"
+set -Ux CLAUDE_CODE_USE_BEDROCK "1"
+
+set -Ux GOPRIVATE "gitlab.failsafe.net/*"
+
+set -gx ATLASSIAN_API_TOKEN (security find-generic-password -a $USER -s "ATLASSIAN_API_TOKEN" -w 2>/dev/null)
+set -gx GITLAB_PERSONAL_ACCESS_TOKEN (security find-generic-password -a $USER -s "GITLAB_PERSONAL_ACCESS_TOKEN" -w 2>/dev/null)
 
 
 starship init fish | source
@@ -38,3 +45,4 @@ fzf --fish | source
 
 set -x GPG_TTY $(TTY)
 /opt/homebrew/bin/gpg-agent --daemon
+export PATH="$HOME/.local/bin:$PATH"

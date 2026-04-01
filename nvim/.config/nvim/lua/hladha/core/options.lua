@@ -3,11 +3,10 @@ local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
-opt.backspace = "2"
+opt.backspace = "indent,eol,start"
 opt.showcmd = true
-opt.laststatus = 2
+opt.laststatus = 3
 opt.autowrite = true
-opt.cursorline = true
 opt.autoread = true
 
 -- use spaces for tabs and whatnot
@@ -16,8 +15,8 @@ opt.shiftwidth = 2
 opt.shiftround = true
 opt.expandtab = true
 
-vim.cmd([[ set noswapfile ]])
-vim.cmd([[ set termguicolors ]])
+opt.swapfile = false
+opt.termguicolors = true
 
 -- Line numbers
 opt.relativenumber = true
@@ -31,7 +30,7 @@ opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
 
 -- cursor line
-opt.cursorline = true -- highlight the current cursor line
+opt.cursorline = true
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = "menuone,noselect"
